@@ -36,6 +36,6 @@ for event in events:
     results[build['status']] += 1
 
 for status in results:
-    print('%s: %s builds (%s %%)' % (status, results[status], int(results[status]/total*100)))
+    print('%s: %s events (%s %%)' % (status, results[status], int(results[status]/total*100)))
 
 print('Status of last event: %s' % last_event_status)
