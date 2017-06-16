@@ -1,6 +1,5 @@
 from requests import get, post
 from os import environ
-from time import sleep
 from sys import argv
 
 
@@ -24,6 +23,11 @@ total = len(events)
 last_event_status = None
 
 print('%s events found' % total)
+
+if len(events) > 20:
+    print('Taking most recent 20')
+    events = events[:20]
+    total = 20
 
 for event in events:
     build = get('https://api.screwdriver.cd/v4/events/%s/builds' % event['id'], headers=headers).json()[0]

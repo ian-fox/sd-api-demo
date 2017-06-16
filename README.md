@@ -4,7 +4,7 @@ Simple scripts demonstrating the Screwdriver API
 ## list.py
 Usage: `python list.py <pipeline id>`
 
-Finds all builds from the given pipeline, and reports on their statuses.
+Reports on the statuses of the most recent 20 builds from the pipeline.
 
 ## start.py
 Usage: `python start.py <pipeline id>`

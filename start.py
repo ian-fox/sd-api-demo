@@ -1,6 +1,5 @@
 from requests import get, post
 from os import environ
-from time import sleep
 from sys import argv
 
 if len(argv) != 2:
