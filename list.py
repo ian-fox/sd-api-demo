@@ -1,10 +1,10 @@
 from requests import get, post
 from os import environ
-from sys import argv
+from sys import argv, exit
 
 
 if len(argv) != 2:
-    raise Exception('Usage: list.py <pipeline id>')
+    exit('Usage: list.py <pipeline id>')
 
 pipeline_id = int(argv[1])
 
@@ -40,6 +40,6 @@ for event in events:
     results[build['status']] += 1
 
 for status in results:
-    print('%s: %s events (%s %%)' % (status, results[status], int(results[status]/total*100)))
+    print('%s: %s events' % (status, results[status]))
 
 print('Status of last event: %s' % last_event_status)

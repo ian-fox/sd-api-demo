@@ -1,9 +1,9 @@
 from requests import get, post
 from os import environ
-from sys import argv
+from sys import argv, exit
 
 if len(argv) != 2:
-    raise Exception('Usage: start.py <pipeline id>')
+    exit('Usage: start.py <pipeline id>')
 
 pipeline_id = int(argv[1])
 
@@ -21,8 +21,8 @@ print('Starting pipeline...')
 start_request = post('https://api.screwdriver.cd/v4/builds', headers=headers, data=dict(jobId=jobs[0]['id']))
 
 
-if (start_request.status_code != 201):
-    raise Exception('Failed to start pipeline')
+if start_request.status_code != 201:
+    exit('Failed to start pipeline: %s' % start_request.json()['message'])
 
 event_id = start_request.json()['eventId']
 print('Started event %s' % event_id)
