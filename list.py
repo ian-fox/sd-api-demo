@@ -9,7 +9,7 @@ if len(argv) != 2:
 pipeline_id = int(argv[1])
 
 print('Authenticating with token')
-jwt = get('https://api.screwdriver.cd/v4/auth/token?access_key=%s' % environ['SD_KEY']).json()['token']
+jwt = get('https://api.screwdriver.cd/v4/auth/token?api_token=%s' % environ['SD_KEY']).json()['token']
 print('Got JWT')
 
 headers = { 'Authorization': 'Bearer %s' % jwt }
