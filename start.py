@@ -7,8 +7,13 @@ if len(argv) != 2:
 
 pipeline_id = int(argv[1])
 
-print('Authenticating with token...')
-jwt = get('https://api.screwdriver.cd/v4/auth/token?api_token=%s' % environ['SD_KEY']).json()['token']
+print('Authenticating with token')
+jwt_request = get('https://api.screwdriver.cd/v4/auth/token?api_token=%s' % environ['SD_TOKEN']).json()
+
+if jwt_request['statusCode'] == 401:
+    exit('Invalid token');
+
+jwt = jwt_request['token']
 print('Got JWT')
 
 headers = { 'Authorization': 'Bearer %s' % jwt }
